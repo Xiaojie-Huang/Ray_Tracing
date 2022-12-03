@@ -1,12 +1,16 @@
 #ifndef HITTABLE_H
 #define HITTABLE_H
 
-#include "../common/ray.h"
+#include "../common/rtweekend.h"
+
+class material;
+
 
 struct hit_record
 {
     point3 p;
     vec3 normal;
+    shared_ptr<material> mat_ptr;
     double t;
     //用来判断内外表面，通过光线和法线点积的正负号来判断,这里假定法线均是指向物体外的
     bool front_face;
