@@ -3,6 +3,10 @@
 
 ## Ray_Tracing_In_One_Weekend
 
+### Final Results
+
+<div align=center><img width="600" height="600" src="https://github.com/Xiaojie-Huang/Ray_Tracing/blob/master/RT_WEEKEND_RESULT.png"/></div>
+
 ### 基本思路
 在不借助任何外部库文件的情况下，要得到最直观的渲染结果，所要做的就是直接写图像文件  
 选用PPM图像文件直接写入每个像素的rgb值  
@@ -29,5 +33,5 @@
 对于折射，根据snell定律
 在整体材质系统中，系统需要做的是生成一个外界来的光线，并且计算该光线对最终像素颜色的贡献
 
-
+### 怎么产生遮挡和镜子般的反射
 
