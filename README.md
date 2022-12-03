@@ -5,7 +5,7 @@
 
 ### Final Results
 
-<div align=center><img width="600" height="600" src="https://github.com/Xiaojie-Huang/Ray_Tracing/blob/master/RT_WEEKEND_RESULT.png"/></div>
+<div align=center><img width="1024" height="576" src="https://github.com/Xiaojie-Huang/Ray_Tracing/blob/master/RT_WEEKEND_RESULT.png"/></div>
 
 ### 基本思路
 在不借助任何外部库文件的情况下，要得到最直观的渲染结果，所要做的就是直接写图像文件  
