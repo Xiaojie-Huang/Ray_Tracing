@@ -10,6 +10,7 @@
   - [Ray\_Tracing\_In\_Next\_Week](#ray_tracing_in_next_week)
     - [Motion Blur](#motion-blur)
     - [BVH](#bvh)
+    - [Solid Texture](#solid-texture)
 
 # Ray_Tracing Series
 关于该项目有一些重要的点需要阐述，即整体项目的框架和实现思路  
@@ -61,9 +62,15 @@
 
 ### BVH
 BVH树作为优化性能的方法之一，本质上就是通过将场景细分，从而使得碰撞检测过程得到加速，不用对每个物体进行遍历  
-对于生成AABB盒的过程，采用的是slab方法，即检测区域重叠
+对于生成AABB盒的过程，采用的是slab方法，即检测区域重叠，详情见图片，其描述了在二维情况下如何判断直线是否和aabb盒相交的情况
 生成BVH树的过程  
 1.随机选择一条轴  
 2.将图元排序  
 3.二分方式BVH节点中  
 不断建树，叶子结点即为真正图元
+
+### Solid Texture
+贴图无非就是对于物体表面的处理，一般可以描述其表面材质，和光线如何交互  
+对物体表面处理要么用代码形式解决，要么就是对图片进行查询  
+贴图就是后者
+Solid Texture直接无论uv坐标返回同样颜色值即可

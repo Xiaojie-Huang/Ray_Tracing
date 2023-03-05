@@ -13,6 +13,11 @@ struct hit_record
     vec3 normal;
     shared_ptr<material> mat_ptr;
     double t;
+
+    //for texture
+    double u;
+    double v;
+
     //用来判断内外表面，通过光线和法线点积的正负号来判断,这里假定法线均是指向物体外的
     bool front_face;
 
