@@ -1,6 +1,19 @@
+- [Ray\_Tracing Series](#ray_tracing-series)
+  - [Ray\_Tracing\_In\_One\_Weekend](#ray_tracing_in_one_weekend)
+    - [Final Results](#final-results)
+    - [基本思路](#基本思路)
+    - [如何实现相机？](#如何实现相机)
+    - [如何表示物体和相交？](#如何表示物体和相交)
+    - [反走样](#反走样)
+    - [材质模拟](#材质模拟)
+    - [怎么产生遮挡和镜子般的反射](#怎么产生遮挡和镜子般的反射)
+  - [Ray\_Tracing\_In\_Next\_Week](#ray_tracing_in_next_week)
+    - [Motion Blur](#motion-blur)
+    - [BVH](#bvh)
+
 # Ray_Tracing Series
 关于该项目有一些重要的点需要阐述，即整体项目的框架和实现思路  
-@[toc]
+
 
 ## Ray_Tracing_In_One_Weekend
 
@@ -39,3 +52,18 @@
 着色scatter后会对该束光线进行递归，对于每束光束我们设置了一个递归深度，表示光线的最大交互次数  
 当光线最终没有碰撞时，则会逃逸，返回（0，0，0）  
 镜子般的反射则是通过材质控制的
+
+## Ray_Tracing_In_Next_Week
+
+### Motion Blur
+整体思路是为光线和相机加上时间属性，运动模糊在实际拍摄时就是在快门开启和关闭时间内的所拍相片的均值  
+我们要做的就是模拟这个过程，通过增加时间属性，然后在这个时间范围内随机的发射光线，最后将得到的结果均值即可
+
+### BVH
+BVH树作为优化性能的方法之一，本质上就是通过将场景细分，从而使得碰撞检测过程得到加速，不用对每个物体进行遍历  
+对于生成AABB盒的过程，采用的是slab方法，即检测区域重叠
+生成BVH树的过程  
+1.随机选择一条轴  
+2.将图元排序  
+3.二分方式BVH节点中  
+不断建树，叶子结点即为真正图元
