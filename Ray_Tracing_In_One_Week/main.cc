@@ -1,11 +1,15 @@
 #include "../common/rtweekend.h"
 #include "../common/color.h"
 
+#include <time.h>
+
+
 #include "hittable_list.h"
 #include "sphere.h"
 #include "material.h"
 #include "../common/camera.h"
 #include "../Ray_Tracing_in_Next_Week/moving_sphere.h"
+#include "../Ray_Tracing_in_Next_Week/bvh.h"
 
 #include <iostream>
 
@@ -137,6 +141,18 @@ hittable_list two_sphere()
     return objects;
 }
 
+//第三个场景
+hittable_list two_perlin_spheres() 
+{
+    hittable_list objects;
+
+    auto pertext = make_shared<noise_texture>(4);
+    objects.add(make_shared<sphere>(point3(0,-1000,0), 1000, make_shared<Lambertian>(pertext)));
+    objects.add(make_shared<sphere>(point3(0, 2, 0), 2, make_shared<Lambertian>(pertext)));
+
+    return objects;
+}
+
 int main() 
 {
     // Image
@@ -156,6 +172,7 @@ int main()
 
     switch(0)
     {
+
         case 1:
             world = random_scene();
             lookfrom = point3(13,2,3);
@@ -164,9 +181,16 @@ int main()
             aperture = 0.1;
             break;
 
-        default:
         case 2:
             world = two_sphere();
+            lookfrom = point3(13,2,3);
+            lookat = point3(0,0,0);
+            vfov = 20.0;
+            break;
+        
+        default:    
+        case 3:
+            world = two_perlin_spheres();
             lookfrom = point3(13,2,3);
             lookat = point3(0,0,0);
             vfov = 20.0;
@@ -179,6 +203,8 @@ int main()
 
     const int image_height = static_cast<int>(image_width / aspect_ratio);
     camera cam(lookfrom, lookat, vup, vfov, aspect_ratio, aperture, dist_to_focus,0.0,1.0);
+
+    clock_t start_time = clock();
     // Render
 
     std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
@@ -200,6 +226,10 @@ int main()
             write_color(std::cout, pixel_color,samples_per_pixel);
         }
     }
+    std::cerr << std::endl;
 
+    clock_t end_time = clock();
+    //输出运行时间
+    std::cerr << static_cast<double>(end_time-start_time)/CLOCKS_PER_SEC << "s";
     std::cerr << "\nDone.\n";
 }

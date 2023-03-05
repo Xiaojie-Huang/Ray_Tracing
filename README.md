@@ -11,6 +11,7 @@
     - [Motion Blur](#motion-blur)
     - [BVH](#bvh)
     - [Solid Texture](#solid-texture)
+    - [Perlin](#perlin)
 
 # Ray_Tracing Series
 关于该项目有一些重要的点需要阐述，即整体项目的框架和实现思路  
@@ -74,3 +75,6 @@ BVH树作为优化性能的方法之一，本质上就是通过将场景细分�
 对物体表面处理要么用代码形式解决，要么就是对图片进行查询  
 贴图就是后者
 Solid Texture直接无论uv坐标返回同样颜色值即可
+
+### Perlin
+柏林噪声部分个人不是很感兴趣（其实是还不是太了解），所以这里不过多展开
