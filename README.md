@@ -8,6 +8,7 @@
     - [材质模拟](#材质模拟)
     - [怎么产生遮挡和镜子般的反射](#怎么产生遮挡和镜子般的反射)
   - [Ray\_Tracing\_In\_Next\_Week](#ray_tracing_in_next_week)
+    - [Final\_Result](#final_result)
     - [Motion Blur](#motion-blur)
     - [BVH](#bvh)
     - [Solid Texture](#solid-texture)
@@ -60,6 +61,9 @@
 镜子般的反射则是通过材质控制的
 
 ## Ray_Tracing_In_Next_Week
+
+### Final_Result
+<div align=center><img width="1024" height="576" src="https://github.com/Xiaojie-Huang/Ray_Tracing/blob/master/RT_NEXTWEEKEND_RESULT.png"/></div>
 
 ### Motion Blur
 整体思路是为光线和相机加上时间属性，运动模糊在实际拍摄时就是在快门开启和关闭时间内的所拍相片的均值  
