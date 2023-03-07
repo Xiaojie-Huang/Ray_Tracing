@@ -12,6 +12,10 @@
     - [BVH](#bvh)
     - [Solid Texture](#solid-texture)
     - [Perlin](#perlin)
+    - [Image\_Texture](#image_texture)
+    - [Rectangles and Lights](#rectangles-and-lights)
+    - [Instance](#instance)
+    - [Volumes](#volumes)
 
 # Ray_Tracing Series
 关于该项目有一些重要的点需要阐述，即整体项目的框架和实现思路  
@@ -78,3 +82,26 @@ Solid Texture直接无论uv坐标返回同样颜色值即可
 
 ### Perlin
 柏林噪声部分个人不是很感兴趣（其实是还不是太了解），所以这里不过多展开
+
+### Image_Texture
+我们可以根据碰撞点信息中的uv坐标来作为采样坐标，对贴图进行采样  
+一般来说可以不用uv而用贴图的像素坐标，但是这会导致当贴图分辨率发生变化时，我们的像素坐标也要发生变化，所以用uv是更好的
+对于一张x*y大小的贴图，其（i,j）像素坐标的位置可以用uv表示为：  
+u = i/(x-1),v = j/(y-1)
+存储图片我们可以使用stb_image库  
+根据碰撞得到的uv坐标逆向得到具体像素坐标，从而定位对应点颜色传给材质即可
+
+### Rectangles and Lights
+需要创建一个有形状和大小的光源  
+首先创建一个能够自发光的材质，添加一个发光函数来得到对应点其发出的光的颜色  
+若要实现矩形，可以通过先实现一个轴对齐的矩形，对于其他形态的矩形，可以在实例化是对其进行变换  
+判断是否与矩形碰撞，可以先判断是否与其所在平面碰撞  
+对于平面：首先根据具体的z
+
+### Instance
+实例化没有什么好讲的，主要是平移和旋转的数学操作  
+
+### Volumes
+Volumes经常用来实现烟/雾等效果  
+该Volumes和光线相交的交互结果是要么直接穿过，要么发生散射，一般而言散射越多，雾效越浓  
+对于是否穿过常采用随机化方法  
